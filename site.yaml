@@ -1,0 +1,18 @@
+---
+
+
+- name: Test Play 1
+  hosts: webservers
+  tasks:
+  - debug: 
+      msg: Play 1 antes de la instalacion de apache
+
+- import_playbook: 01-playbook-install-apache.yaml
+- import_playbook: 02-playbook-configuracion-ssh.yaml
+- import_playbook: 03-playbook-probar-aplicacion.yaml
+
+- name: Test Play Finale
+  hosts: webservers
+  tasks:
+  - debug: 
+      msg: Play final luego de la instalacion de apache

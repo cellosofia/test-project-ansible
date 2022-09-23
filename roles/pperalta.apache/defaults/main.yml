@@ -1,0 +1,19 @@
+mensaje_1: "Mensaje 1 dentro de myvars.yaml"
+mymessage: "Este mensaje tambien viene del archivo myvars.yaml"
+users_to_create:
+- name: Pablo
+  last: Peralta
+  username: pperalta
+- name: David
+  last: Vendeuvre
+  username: dvendeuvre
+file_to_deploy: /var/www/html/index.html
+users:
+- name: pperalta
+  password: pperalta
+- name: test
+  password: test
+cadena_json: '{"user": "test", "password": "test"}'
+objeto_json:
+  user: "test"
+  password: "test"

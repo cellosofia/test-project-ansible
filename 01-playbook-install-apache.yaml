@@ -1,0 +1,20 @@
+---
+- name: Instalacion de Apache
+  hosts: webservers
+  vars_files:
+    - vars/myvars.yaml
+  tasks:
+
+  - import_tasks: 01-task-instalacion-apache.yaml
+    vars:
+      contenido: 'test'
+      ejemplo: 'test'
+  - include_tasks: 02-task-despliegue-aplicacion.yaml
+    when: test
+  - import_tasks: 03-task-configuracion-firewall.yaml
+
+
+  handlers:
+    - name: include handlers
+      include_tasks: handler-tasks.yaml
+        

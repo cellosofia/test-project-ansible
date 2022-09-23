@@ -1,0 +1,9 @@
+- name: reiniciar apache
+  service:
+    name: httpd
+    state: restarted
+  notify: notificar por telegram
+
+- name: notificar por telegram
+  debug:
+    msg: Envie un mensaje por telegram :D

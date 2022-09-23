@@ -1,0 +1,11 @@
+---
+- file:
+    path: "{{ item }}"
+    state: directory
+  loop:
+  - /var/www
+  - /var/www/html
+
+- copy:
+    content: Info file
+    dest: /var/www/html/info.html

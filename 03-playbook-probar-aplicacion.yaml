@@ -1,0 +1,22 @@
+
+- name: Probar la instalacion de apache
+  hosts: webservers
+  become: False
+  remote_user: student
+  tasks:
+    - name: Probar la URL de la aplicacion
+      uri:
+        url: "http://{{ ansible_facts['fqdn'] }}"
+        return_content: yes
+        status_code: 200
+      register: output
+
+    - name: Fallar si la salida no corresponde
+      fail:
+        msg: "No me salio index.html en la salida"
+      when: "'index.html' not in output.content"
+
+    - name: Script
+      script: scripts/check_free_memory
+
+    

@@ -1,0 +1,31 @@
+---
+- name: Create the ansible user for transport user
+  hosts: all
+  tasks:
+
+
+  - name: Create group for ansible user
+    group:
+      name: ansible
+      state: present
+    
+
+  - name: Create ansible user
+    user:
+      name: ansible
+      shell: /bin/bash
+      groups: wheel, ansible
+      append: yes
+      comment: "Ansible User"
+      create_home: yes
+      uid: 1005
+      password: "{{ 'test' | password_hash('sha512') }}"
+      state: present
+
+  - name: copy pub key to authorized key file
+    authorized_key:
+      user: ansible
+      state: present
+      key: "{{ lookup('file', '/home/student/.ssh/lab_rsa.pub') }}"
+
+

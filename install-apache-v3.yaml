@@ -1,0 +1,31 @@
+---
+- hosts: webservers
+  tasks:
+  - rpm_key:
+      key: http://materials.example.com/yum/repository/RPM-GPG-KEY-example
+      state: present
+
+  - yum_repository:
+      name: test repo
+      file: test
+      description: Example 
+      baseurl: http://materials.example.com/yum/repository/
+      enabled: yes
+      gpgcheck: yes
+      state: present
+
+
+  - yum:
+      name: httpd
+      state: present
+    when: "ansible_distribution == 'RedHat'"
+
+  - dnf:
+      name: httpd
+      state: present
+    when: "ansible_distribution == 'Fedora'"
+
+  - apt:
+      name: apache2
+      state: present
+    when: "ansible_distribution == 'Debian'"

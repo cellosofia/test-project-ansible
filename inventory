@@ -1,0 +1,22 @@
+
+[dbservers]
+serverc.lab.example.com
+
+[development]
+servera.lab.example.com
+
+[production:children]
+dbservers
+
+[production]
+serverb.lab.example.com
+
+[webservers]
+servera.lab.example.com file_content='Contenido del archivo desde el inventario para servera'
+serverb.lab.example.com
+
+[webservers:vars]
+file_content='contenido del archivo desde el inventario a nivel de variable de grupo'
+
+[todos]
+server[a:d].lab.example.com

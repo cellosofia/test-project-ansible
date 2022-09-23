@@ -1,0 +1,8 @@
+---
+- name: Backup de logs /var/log/secure
+  hosts: webservers
+  tasks:
+    - name: Obtener los logs
+      fetch:
+        src: /var/log/secure
+        dest: /home/student/secure

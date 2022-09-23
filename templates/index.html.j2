@@ -1,0 +1,16 @@
+Este index.html se va a desplegar en los servidores del grupo webservers
+
+Estoy respondiendo desde el servidor {{ ansible_facts['fqdn'] }}
+
+{% for x in users %}
+  Usuario: {{ x.name }}
+  Password: {{ x.password }}
+  Usuario numero: {{ loop.index }}
+{% endfor %}
+
+{% if condicion %}
+  Escribo esto
+{% else %}
+    Escribo esto otro
+{% endif %}
+

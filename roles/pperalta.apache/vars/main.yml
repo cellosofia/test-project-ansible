@@ -1,0 +1,9 @@
+package_name:
+  - httpd
+  - mod_ssl
+service_name:
+  - httpd
+  - sshd
+firewall_service:
+  - http
+  - https

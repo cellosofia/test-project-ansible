@@ -1,0 +1,19 @@
+- name: Desplegar aplicacion o contenido de ejemplo
+  template:
+    src: index.html.j2
+    dest: "{{ file_to_deploy }}"
+  notify: reiniciar apache
+
+- name: Definir permisos para el contenido de ejemplo
+  file:
+    path: "{{ file_to_deploy }}"
+    group: root
+    owner: root
+    mode: '0644'
+    setype: 'httpd_sys_content_t'
+
+- name: Cambiar la base de datos de selinux
+  sefcontext:
+    target: '/var/www/html(/.*)?'
+    setype: httpd_sys_content_t
+    state: present

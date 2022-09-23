@@ -1,0 +1,8 @@
+---
+- hosts: webservers
+  tasks:
+
+  - shell: "echo hola mundo. Usuario: {{ lookup('env', 'USER') }}  > /tmp/shell.txt; touch /tmp/lock"
+    args:
+      chdir: /tmp/
+      creates: /tmp/lock

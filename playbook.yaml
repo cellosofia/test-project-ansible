@@ -1,0 +1,49 @@
+---
+- name: Playbook de ejemplo. Play 1
+  hosts: webservers
+
+
+  pre_tasks:
+  - debug:
+      msg: Pre tasks
+
+  roles:
+  - name: pperalta.apache
+    vars:
+      users:
+      - name: test1
+        password: test1
+      - name: test2
+        password: test2
+
+  tasks:
+  - debug:
+      msg: Tasks
+
+  post_tasks:
+  - debug:
+      msg: Post Tasks
+- name: Playbook de ejemplo. Play 1
+  hosts: web02group
+
+
+  pre_tasks:
+  - debug:
+      msg: Pre tasks
+
+  roles:
+  - name: pperalta.apache
+    vars:
+      users:
+      - name: test3
+        password: test1
+      - name: test4
+        password: test2
+
+  tasks:
+  - debug:
+      msg: Tasks
+
+  post_tasks:
+  - debug:
+      msg: Post Tasks

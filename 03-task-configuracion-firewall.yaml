@@ -1,0 +1,7 @@
+- name: Habilitar el servicio en el firewall
+  firewalld:
+    service: "{{ item }}"
+    state: enabled
+    permanent: True
+    immediate: True
+  loop: "{{ firewall_service }}"

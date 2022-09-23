@@ -1,0 +1,15 @@
+---
+- name: Reiniciar apache si no esta corriendo
+  hosts: webservers
+  tasks:
+    - name: verificar si el servicio esta arriba
+      shell: /usr/bin/systemctl is-active httpd
+      ignore_errors: True
+      changed_when: False
+      register: output
+
+    - name: Reiniciar apache si el servicio esta caido
+      service:
+        name: httpd
+        state: restarted
+      when: output.rc != 0

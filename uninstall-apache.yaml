@@ -1,0 +1,23 @@
+---
+- name: Desinstalacion de Apache
+  hosts: webservers
+  tasks:
+    - name: Desinstalar el paquete de apache y https
+      package:
+        name:
+          - httpd
+          - mod_ssl
+        state: absent
+
+    - name: Eliminar aplicacion o contenido de ejemplo
+      file:
+        path: /var/www/html/index.html
+        state: absent
+
+    - name: Deshabilitar el servicio en el firewall
+      firewalld:
+        service: http
+        state: disabled
+        permanent: True
+        immediate: True
+        

@@ -1,0 +1,10 @@
+- name: Configure ntp clients 
+  hosts: all
+  tasks:
+  
+  - include_role: 
+      name: redhat.rhel_system_roles.timesync
+    vars:
+      timesync_ntp_servers:
+      - hostname: classroom.example.com
+        iburst: yes

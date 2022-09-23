@@ -1,0 +1,6 @@
+---
+# tasks file for pperalta.motd
+- name: Crear archivo motd
+  copy:
+    content: 'Este sistema esta protegido, no hagas nada malo por fi. System owner: {{ system_owner }} '
+    dest: /etc/motd

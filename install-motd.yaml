@@ -1,0 +1,6 @@
+- name: install motd on webservers
+  hosts: webservers
+  roles:
+  - name: pperalta.motd
+    vars:
+      system_owner: pepito

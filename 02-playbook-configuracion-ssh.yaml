@@ -1,0 +1,17 @@
+---
+- name: config ssh
+  hosts: webservers
+  tasks:
+    - name: Habilitar el acceso de root en el servidor por ssh
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        line: 'PermitRootLogin without-password'
+        state: present
+        regexp: '^(#\s*)?PermitRootLogin'
+      notify: reiniciar sshd
+  
+  handlers:
+    - name: reiniciar sshd
+      service:
+        name: sshd
+        state: restarted
